@@ -5,6 +5,7 @@
   font-family: monospace;
   font-size: 14px;
   cursor: text;
+  overflow: auto;
 }
 .nShell a {
   color: inherit;

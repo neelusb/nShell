@@ -153,16 +153,16 @@ function nShell(nShellID, nShellTitleIn, nShellPromptIconIn) {
   shl.addEventListener('keypress', function (e) {
     var key = e.which || e.keyCode;
     if (key === 13) {
-      if (shl.getElementsByTagName('input')[0].value.replace(/ /g,'')) {
-        var ele = shl.getElementsByTagName('input')[shl.getElementsByTagName('input').length - 1];
-        var eleparent = ele.parentNode;
-        var contenti = ele.value;
-        var content = contenti.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-        eleparent.removeChild(ele);
-        var newele = document.createElement('div');
-        newele.className += ' input';
-        newele.innerHTML = content;
-        eleparent.appendChild(newele);
+      var ele = shl.getElementsByTagName('input')[shl.getElementsByTagName('input').length - 1];
+      var eleparent = ele.parentNode;
+      var contenti = ele.value;
+      var content = contenti.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+      eleparent.removeChild(ele);
+      var newele = document.createElement('div');
+      newele.className += ' input';
+      newele.innerHTML = content;
+      eleparent.appendChild(newele);
+      if (contenti.replace(/ /g,'')) {
         nShell.prototype.proc(contenti);
       }
       arrOfPrevCmds.unshift(contenti);
