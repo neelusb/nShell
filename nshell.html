@@ -23,7 +23,7 @@
     var shell = new nShell('shell', 'nShell');
 
     shell.setOptions({
-      'caseSensitive': false,
+      'caseSensitive': true,
       'font-size': '16px'
     });
 
@@ -32,6 +32,21 @@
       'foo': 'bar',
       'cmd': function() {
         return 1+1;
+      },
+      'test': function() {
+        return '<span style="color: darkturquoise; font-weight: bold;">Hi</span>'
+      }
+    });
+
+    shell.setCommand(function(inp, inpArr) {
+      if (inpArr[0] == 'calc') {
+        inp = inp.slice(5);
+      }
+      try {
+        shell.post(eval(inp));
+      }
+      catch (err) {
+        shell.throw(inp, 'lol', err);
       }
     });
 

@@ -106,7 +106,7 @@ function nShell(nShellID, nShellTitleIn, nShellPromptIconIn) {
       }
     }
     else if (backupfn) {
-      backupfn(inp);
+      backupfn(inp, inp.replace(/ +(?= )/g,'').split(' '));
     }
     else {
       nShell.prototype.post(inpO + ': Command not found.');
@@ -193,12 +193,18 @@ function nShell(nShellID, nShellTitleIn, nShellPromptIconIn) {
       if (arrOfPrevCmds[curPrevCmd + 1] !== undefined) {
         curPrevCmd += 1;
       }
+      // shl.getElementsByTagName('input')[0].focus();
+      // shl.getElementsByTagName('input')[0].select();
+      // shl.getElementsByTagName('input')[0].value = '';
       shl.getElementsByTagName('input')[0].value = arrOfPrevCmds[curPrevCmd];
     }
     else if (key === 40) {
       if (arrOfPrevCmds[curPrevCmd - 1] !== undefined) {
         curPrevCmd -= 1;
       }
+      // shl.getElementsByTagName('input')[0].focus();
+      // shl.getElementsByTagName('input')[0].select();
+      // shl.getElementsByTagName('input')[0].value = '';
       shl.getElementsByTagName('input')[0].value = arrOfPrevCmds[curPrevCmd];
     }
   });
