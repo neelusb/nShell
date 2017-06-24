@@ -27,7 +27,6 @@
       'font-size': '16px'
     });
 
-
     shell.setCommand({
       'foo': 'bar',
       'cmd': function() {
@@ -35,18 +34,26 @@
       },
       'test': function() {
         return '<span style="color: darkturquoise; font-weight: bold;">Hi</span>'
+      },
+      'reset': function() {
+        location.reload();
       }
     });
 
     shell.setCommand(function(inp, inpArr) {
-      if (inpArr[0] == 'calc') {
-        inp = inp.slice(5);
+      if (inpArr[0] == 'echo') {
+        shell.post(inp.slice(5));
       }
-      try {
-        shell.post(eval(inp));
-      }
-      catch (err) {
-        shell.throw(inp, 'lol', err);
+      else {
+        if (inpArr[0] == 'calc') {
+          inp = inp.slice(5);
+        }
+        try {
+          shell.post(eval(inp).toString());
+        }
+        catch (err) {
+          shell.throw(inp, err);
+        }
       }
     });
 
